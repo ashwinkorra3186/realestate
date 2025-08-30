@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KINGSHIP — New Standard in True Value | Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --dark:#0b2e24;           /* Primary deep green */
+      --dark-2:#0f3a2e;         /* Slightly lighter for gradients */
+      --ink:#e7efe9;            /* Light text on dark */
+      --muted:#b7c7be;          /* Muted text */
+      --gold:#d4af37;           /* Primary gold */
+      --gold-2:#f3d36d;         /* Soft gold for hovers */
+      --bg:#0a211b;             /* Page background */
+      --card:#102d25;           /* Card background */
+      --max:1200px;             /* Content width */
+      --radius:18px;            /* Rounded corners */
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6; 
+    }
+    /* Utility */
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:80px 0}
+    .grid{display:grid; gap:22px}
+    .btn{
+      display:inline-block; padding:14px 22px; border:1px solid var(--gold);
+      color:var(--ink); text-decoration:none; letter-spacing:.5px; border-radius:999px;
+      transition:.25s ease; box-shadow:0 0 0 0 rgba(212,175,55,.3);
+    }
+    .btn:hover{color:#151a17; background:var(--gold); box-shadow:0 12px 40px rgba(212,175,55,.25)}
+    .btn.ghost{background:transparent; color:var(--gold)}
+    .eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:.25em; font-weight:600; font-size:.82rem}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif; margin:0 0 12px}
+    h1{font-size:clamp(36px,6vw,64px); line-height:1.1; font-weight:700}
+    h2{font-size:clamp(28px,4vw,42px); font-weight:600}
+    h3{font-size:22px; font-weight:600}
+    p.lead{font-size:1.1rem; color:var(--muted)}
+    .gold{color:var(--gold)}
+    .divider{height:1px; background:linear-gradient(90deg,transparent, var(--gold) 20%, var(--gold) 80%, transparent); opacity:.35; margin:18px 0 26px}
+
+    /* Nav */
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(1.2) blur(8px);
+         background:linear-gradient(180deg, rgba(11,46,36,.92), rgba(11,46,36,.75)); border-bottom:1px solid rgba(212,175,55,.22)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none}
+    .brand-logo{height:40px; width:auto; object-fit:contain}
+    .brand-icon{width:28px; height:28px; border-radius:8px; border:1px solid var(--gold); position:relative; display:none}
+    .brand-icon:before{content:""; position:absolute; inset:4px; border:1px solid var(--gold); border-radius:6px}
+    .brand b{font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--gold); letter-spacing:.04em; display:none}
+    .nav a{color:var(--ink); text-decoration:none; opacity:.86}
+    .menu{display:flex; gap:22px}
+    .menu a:hover{color:var(--gold)}
+
+    /* Dropdown */
+    .dropdown{position:relative; display:inline-block}
+    .dropdown-content{display:none; position:absolute; background:linear-gradient(180deg, rgba(11,46,36,.98), rgba(11,46,36,.92)); 
+                     min-width:320px; box-shadow:0 12px 24px rgba(0,0,0,.4); z-index:9999; border:1px solid rgba(212,175,55,.3); 
+                     border-radius:8px; padding:12px 0; backdrop-filter:blur(12px); top:calc(100% + 4px); left:0}
+    .dropdown-content a{color:var(--ink); padding:12px 20px; text-decoration:none; display:block; opacity:.9; font-size:.9rem; 
+                       transition:all 0.2s ease; white-space:nowrap}
+    .dropdown-content a:hover{background:rgba(212,175,55,.15); color:var(--gold); opacity:1}
+    .dropdown:hover .dropdown-content{display:block}
+    .dropdown:hover > a{color:var(--gold)}
+    .dropdown > a:after{content:" ▾"; font-size:.8rem; margin-left:4px; transition:transform 0.2s ease}
+    .dropdown:hover > a:after{transform:rotate(180deg)}
+    
+    /* Ensure dropdown stays open when hovering over content */
+    .dropdown-content:hover{display:block}
+
+    /* Hero */
+    .hero{position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden;
+      background:
+        radial-gradient(60% 70% at 70% 30%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg, rgba(9,29,23,.35), rgba(9,29,23,.85)),
+        url('images/ChatGPT Image Aug 29, 2025 at 06_35_11 PM.png');
+      background-size:cover; background-position:center;
+      border-bottom:1px solid rgba(212,175,55,.25)
+    }
+    .hero .wrap{padding:120px 0 100px; text-align:center}
+    .hero h1{max-width:900px; margin:0 auto 12px}
+    .hero p{max-width:760px; margin:0 auto 26px}
+
+    /* Cards */
+    .card{background:linear-gradient(180deg, var(--card), #0b251f); border:1px solid rgba(212,175,55,.18);
+          border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:relative}
+    .card .icon{width:42px; height:42px; border:1px solid var(--gold); border-radius:10px; display:grid; place-items:center; margin-bottom:14px}
+    .card .icon svg{width:24px; height:24px; fill:var(--gold)}
+    .card:hover{transform:translateY(-3px); transition:.25s ease; box-shadow:0 16px 40px rgba(0,0,0,.5)}
+
+    /* Services grid */
+    .services{grid-template-columns:repeat(12,1fr)}
+    .services .card{grid-column:span 6}
+    @media (min-width:900px){ .services .card{grid-column:span 4} }
+
+    /* Projects */
+    .filters{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 24px}
+    .chip{padding:8px 14px; border:1px solid rgba(212,175,55,.35); border-radius:999px; cursor:pointer}
+    .chip.active, .chip:hover{border-color:var(--gold); color:var(--gold)}
+    .project-grid{grid-template-columns:repeat(12,1fr)}
+    .project{grid-column:span 12; overflow:hidden; padding:0}
+    .project .cover{height:220px; background-size:cover; background-position:center}
+    .project .meta{padding:18px 22px}
+    @media(min-width:760px){ .project{grid-column:span 6} }
+    @media(min-width:1024px){ .project{grid-column:span 4} .project .cover{height:200px} }
+
+    /* Partnership bar */
+    .logos{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
+    .logo{border:1px solid rgba(212,175,55,.2); border-radius:14px; padding:16px; text-align:center; color:var(--muted)}
+    @media(min-width:760px){ .logos{grid-template-columns:repeat(5,1fr)} }
+
+    /* Footer */
+    footer{background:linear-gradient(180deg, #081b16, #06130f); border-top:1px solid rgba(212,175,55,.2)}
+    .footgrid{display:grid; gap:26px}
+    @media(min-width:760px){ .footgrid{grid-template-columns:2fr 1fr 1fr 1fr} }
+    .footgrid a{display:block; color:var(--muted); text-decoration:none; margin:6px 0}
+    .footgrid a:hover{color:var(--gold)}
+
+    /* Contact strip */
+    .cta{background:linear-gradient(90deg, rgba(212,175,55,.1), transparent), var(--dark-2); border:1px solid rgba(212,175,55,.25); border-radius:var(--radius); padding:28px; display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <b>KINGSHIP</b>
+      </a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="brand-promise.html">Brand Promise</a>
+        <div class="dropdown">
+          <a href="services.html">Services</a>
+          <div class="dropdown-content">
+            <a href="services.html#expert-connect">Expert Connect</a>
+            <a href="services.html#design-build">Design & Build</a>
+            <a href="services.html#maintenance">Maintenance</a>
+            <a href="services.html#commercialization">Commercialization & RoI Assurance: Re-sale / Tenancy Management / More</a>
+            <a href="services.html#litigation">Litigation Resolution / Legal Advisory & Assistance</a>
+            <a href="services.html#leasing">Leasing & Resale</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="offers.html">Offers</a>
+        <a href="resources.html">Resources</a>
+        <a href="legacy.html">Legacy</a>
+        <a href="partner.html">Partner with us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="container wrap">
+      <div class="eyebrow">Real Estate • India</div>
+      <h1><span class="gold">New Standard</span> in True Value</h1>
+      <p class="lead">HYPE-SHATTERING | VALUE-CREATING — Experience the ultimate choice for value in real estate. From plots to palaces, we deliver unmatched value through research‑based guidance and zero‑hype principles.</p>
+      <div style="margin-top:14px">
+        <a class="btn" href="#projects">Explore Properties</a>
+        <a class="btn ghost" href="#services">View Services</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURED HIGHLIGHTS -->
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Why Choose KINGSHIP</div>
+      <h2>The <span class="gold">New Standard</span> in True Value</h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 4">
+          <h3>NO-MORE-HYPE | ZERO-HYPE</h3>
+          <p class="lead">We shatter industry hype with transparency and truth. Every recommendation is research-backed.</p>
+          <a class="btn ghost" href="brand-promise.html">Learn More</a>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>True Value-Added Services</h3>
+          <p class="lead">From plots to palaces — comprehensive advisory, design & build, legal, and ROI solutions.</p>
+          <a class="btn ghost" href="services.html">View Services</a>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>25+ Projects Delivered</h3>
+          <p class="lead">Track record of excellence with 98% on-time delivery and 1000+ satisfied clients.</p>
+          <a class="btn ghost" href="projects.html">See Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA STRIP -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <div class="eyebrow">Helpline</div>
+          <h3 style="margin:6px 0 4px">Ask Anything • Book a Site Visit</h3>
+          <p class="lead" style="margin:0">We respond within 1 business hour. Transparency first — zero hype, only facts.</p>
+        </div>
+        <div>
+          <a class="btn" href="mailto:hello@kingship.example">Email Us</a>
+          <a class="btn ghost" href="tel:+910000000000">Call +91 00000 00000</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container section">
+      <div class="footgrid">
+        <div>
+          <a class="brand" href="#"><span class="brand-icon" aria-hidden="true"></span><b>KINGSHIP</b></a>
+          <p class="lead">A new standard in true value for all things real estate.</p>
+        </div>
+        <div>
+          <div class="eyebrow">Company</div>
+          <a href="#legacy">Legacy</a>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#resources">Resources</a>
+        </div>
+        <div>
+          <div class="eyebrow">Programs</div>
+          <a href="#resources">Referral</a>
+          <a href="#resources">Brand Champions</a>
+          <a href="#resources">RE‑Invest Portal</a>
+        </div>
+        <div>
+          <div class="eyebrow">Contact</div>
+          <a href="mailto:hello@kingship.example">hello@kingship.example</a>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+          <a href="#contact">Schedule a Visit</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:.9rem">© 2025 Kingship Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

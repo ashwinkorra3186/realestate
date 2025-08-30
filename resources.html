@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources — KINGSHIP | Info-Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --dark:#0b2e24;           
+      --dark-2:#0f3a2e;         
+      --ink:#e7efe9;            
+      --muted:#b7c7be;          
+      --gold:#d4af37;           
+      --gold-2:#f3d36d;         
+      --bg:#0a211b;             
+      --card:#102d25;           
+      --max:1200px;             
+      --radius:18px;            
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6; 
+    }
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:80px 0}
+    .grid{display:grid; gap:22px}
+    .btn{
+      display:inline-block; padding:14px 22px; border:1px solid var(--gold);
+      color:var(--ink); text-decoration:none; letter-spacing:.5px; border-radius:999px;
+      transition:.25s ease; box-shadow:0 0 0 0 rgba(212,175,55,.3);
+    }
+    .btn:hover{color:#151a17; background:var(--gold); box-shadow:0 12px 40px rgba(212,175,55,.25)}
+    .btn.ghost{background:transparent; color:var(--gold)}
+    .eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:.25em; font-weight:600; font-size:.82rem}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif; margin:0 0 12px}
+    h1{font-size:clamp(36px,6vw,64px); line-height:1.1; font-weight:700}
+    h2{font-size:clamp(28px,4vw,42px); font-weight:600}
+    h3{font-size:22px; font-weight:600}
+    p.lead{font-size:1.1rem; color:var(--muted)}
+    .gold{color:var(--gold)}
+    .divider{height:1px; background:linear-gradient(90deg,transparent, var(--gold) 20%, var(--gold) 80%, transparent); opacity:.35; margin:18px 0 26px}
+
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(1.2) blur(8px);
+         background:linear-gradient(180deg, rgba(11,46,36,.92), rgba(11,46,36,.75)); border-bottom:1px solid rgba(212,175,55,.22)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none}
+    .brand-logo{height:40px; width:auto; object-fit:contain}
+    .brand-icon{width:28px; height:28px; border-radius:8px; border:1px solid var(--gold); position:relative; display:none}
+    .brand-icon:before{content:""; position:absolute; inset:4px; border:1px solid var(--gold); border-radius:6px}
+    .brand b{font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--gold); letter-spacing:.04em; display:none}
+    .nav a{color:var(--ink); text-decoration:none; opacity:.86}
+    .menu{display:flex; gap:22px}
+    .menu a:hover{color:var(--gold)}
+
+    .hero{position:relative; min-height:60vh; display:grid; place-items:center; overflow:hidden;
+      background:
+        radial-gradient(60% 70% at 70% 30%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg, rgba(9,29,23,.35), rgba(9,29,23,.85)),
+        url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover; background-position:center;
+      border-bottom:1px solid rgba(212,175,55,.25)
+    }
+    .hero .wrap{padding:80px 0 60px; text-align:center}
+    .hero h1{max-width:900px; margin:0 auto 12px}
+    .hero p{max-width:760px; margin:0 auto 26px}
+
+    .card{background:linear-gradient(180deg, var(--card), #0b251f); border:1px solid rgba(212,175,55,.18);
+          border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:relative}
+    .card .icon{width:42px; height:42px; border:1px solid var(--gold); border-radius:10px; display:grid; place-items:center; margin-bottom:14px}
+    .card .icon svg{width:24px; height:24px; fill:var(--gold)}
+    .card:hover{transform:translateY(-3px); transition:.25s ease; box-shadow:0 16px 40px rgba(0,0,0,.5)}
+
+    .logos{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
+    .logo{border:1px solid rgba(212,175,55,.2); border-radius:14px; padding:16px; text-align:center; color:var(--muted)}
+    @media(min-width:760px){ .logos{grid-template-columns:repeat(5,1fr)} }
+
+    footer{background:linear-gradient(180deg, #081b16, #06130f); border-top:1px solid rgba(212,175,55,.2)}
+    .footgrid{display:grid; gap:26px}
+    @media(min-width:760px){ .footgrid{grid-template-columns:2fr 1fr 1fr 1fr} }
+    .footgrid a{display:block; color:var(--muted); text-decoration:none; margin:6px 0}
+    .footgrid a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo"><span class="brand-icon" aria-hidden="true"></span>
+        <b>KINGSHIP</b>
+      </a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="brand-promise.html">Brand Promise</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="offers.html">Offers</a>
+        <a href="resources.html" class="gold">Resources</a>
+        <a href="legacy.html">Legacy</a>
+        <a href="partner.html">Partner with us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container wrap">
+      <div class="eyebrow">Resources</div>
+      <h1>Info-Resource <span class="gold">Hub</span></h1>
+      <p class="lead">Guides, checklists, and market insights to help you make research-backed decisions</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Investment Guides</div>
+      <h2>Research-Backed <span class="gold">Insights</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 4">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <h3>First-Time Buyer Guide</h3>
+          <p class="lead">Complete handbook for first-time real estate investors</p>
+          <a href="#" class="btn ghost">Download PDF</a>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 17h2v2H3v-2zm4 0h2v2H7v-2zm4-6h2v8h-2v-8zm4-4h2v12h-2V7zm4-2h2v14h-2V5z"/></svg>
+          </div>
+          <h3>Market Analysis Reports</h3>
+          <p class="lead">Quarterly insights on Indian real estate markets</p>
+          <a href="#" class="btn ghost">View Reports</a>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zM5 21V7l5-4 5 4v14H5z"/></svg>
+          </div>
+          <h3>Legal Checklist</h3>
+          <p class="lead">Essential legal documents and verification steps</p>
+          <a href="#" class="btn ghost">Get Checklist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Tools & Calculators</div>
+      <h2>Investment <span class="gold">Tools</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 6">
+          <h3>EMI Calculator</h3>
+          <p class="lead">Calculate your monthly payments and total interest costs</p>
+          <a href="#" class="btn ghost">Use Calculator</a>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>ROI Analyzer</h3>
+          <p class="lead">Analyze potential returns on your investment</p>
+          <a href="#" class="btn ghost">Analyze ROI</a>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Affordability Calculator</h3>
+          <p class="lead">Determine your budget based on income and expenses</p>
+          <a href="#" class="btn ghost">Check Budget</a>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Property Comparison</h3>
+          <p class="lead">Compare multiple properties side by side</p>
+          <a href="#" class="btn ghost">Compare Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Strategic Partners</div>
+      <h2>Partner <span class="gold">Network</span></h2>
+      <div class="divider"></div>
+      <div class="logos">
+        <div class="logo">Banking Partner</div>
+        <div class="logo">Finance Partner</div>
+        <div class="logo">Land Owners</div>
+        <div class="logo">Legal</div>
+        <div class="logo">Architecture</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Knowledge Center</div>
+      <h2>Educational <span class="gold">Content</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 4">
+          <h3>Webinar Series</h3>
+          <p class="lead">Monthly webinars on market trends and investment strategies</p>
+          <a href="#" class="btn ghost">Join Next Session</a>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>Video Tutorials</h3>
+          <p class="lead">Step-by-step guides for property buying process</p>
+          <a href="#" class="btn ghost">Watch Videos</a>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>Blog & Articles</h3>
+          <p class="lead">Expert insights and market commentary</p>
+          <a href="#" class="btn ghost">Read Blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">RE-Invest Portal</div>
+      <h2>Investment <span class="gold">Platform</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <h3>Exclusive Investment Opportunities</h3>
+          <p class="lead">Access pre-launch projects, off-market deals, and institutional-grade investments through our exclusive RE-Invest portal.</p>
+          <div style="margin-top:20px">
+            <a href="#" class="btn">Access Portal</a>
+            <a href="#" class="btn ghost">Request Access</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container section">
+      <div class="footgrid">
+        <div>
+          <a class="brand" href="index.html"><img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo"><span class="brand-icon" aria-hidden="true"></span><b>KINGSHIP</b></a>
+          <p class="lead">A new standard in true value for all things real estate.</p>
+        </div>
+        <div>
+          <div class="eyebrow">Company</div>
+          <a href="legacy.html">Legacy</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div>
+          <div class="eyebrow">Programs</div>
+          <a href="offers.html">Referral</a>
+          <a href="offers.html">Brand Champions</a>
+          <a href="resources.html">RE‑Invest Portal</a>
+        </div>
+        <div>
+          <div class="eyebrow">Contact</div>
+          <a href="mailto:hello@kingship.example">hello@kingship.example</a>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:.9rem">© 2025 Kingship Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

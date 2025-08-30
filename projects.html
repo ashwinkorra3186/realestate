@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — KINGSHIP | Past • Current • Upcoming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --dark:#0b2e24;           
+      --dark-2:#0f3a2e;         
+      --ink:#e7efe9;            
+      --muted:#b7c7be;          
+      --gold:#d4af37;           
+      --gold-2:#f3d36d;         
+      --bg:#0a211b;             
+      --card:#102d25;           
+      --max:1200px;             
+      --radius:18px;            
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6; 
+    }
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:80px 0}
+    .grid{display:grid; gap:22px}
+    .btn{
+      display:inline-block; padding:14px 22px; border:1px solid var(--gold);
+      color:var(--ink); text-decoration:none; letter-spacing:.5px; border-radius:999px;
+      transition:.25s ease; box-shadow:0 0 0 0 rgba(212,175,55,.3);
+    }
+    .btn:hover{color:#151a17; background:var(--gold); box-shadow:0 12px 40px rgba(212,175,55,.25)}
+    .btn.ghost{background:transparent; color:var(--gold)}
+    .eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:.25em; font-weight:600; font-size:.82rem}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif; margin:0 0 12px}
+    h1{font-size:clamp(36px,6vw,64px); line-height:1.1; font-weight:700}
+    h2{font-size:clamp(28px,4vw,42px); font-weight:600}
+    h3{font-size:22px; font-weight:600}
+    p.lead{font-size:1.1rem; color:var(--muted)}
+    .gold{color:var(--gold)}
+    .divider{height:1px; background:linear-gradient(90deg,transparent, var(--gold) 20%, var(--gold) 80%, transparent); opacity:.35; margin:18px 0 26px}
+
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(1.2) blur(8px);
+         background:linear-gradient(180deg, rgba(11,46,36,.92), rgba(11,46,36,.75)); border-bottom:1px solid rgba(212,175,55,.22)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none}
+    .brand-logo{height:40px; width:auto; object-fit:contain}
+    .brand-icon{width:28px; height:28px; border-radius:8px; border:1px solid var(--gold); position:relative; display:none}
+    .brand-icon:before{content:""; position:absolute; inset:4px; border:1px solid var(--gold); border-radius:6px}
+    .brand b{font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--gold); letter-spacing:.04em; display:none}
+    .nav a{color:var(--ink); text-decoration:none; opacity:.86}
+    .menu{display:flex; gap:22px}
+    .menu a:hover{color:var(--gold)}
+
+    .hero{position:relative; min-height:60vh; display:grid; place-items:center; overflow:hidden;
+      background:
+        radial-gradient(60% 70% at 70% 30%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg, rgba(9,29,23,.35), rgba(9,29,23,.85)),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover; background-position:center;
+      border-bottom:1px solid rgba(212,175,55,.25)
+    }
+    .hero .wrap{padding:80px 0 60px; text-align:center}
+    .hero h1{max-width:900px; margin:0 auto 12px}
+    .hero p{max-width:760px; margin:0 auto 26px}
+
+    .card{background:linear-gradient(180deg, var(--card), #0b251f); border:1px solid rgba(212,175,55,.18);
+          border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:relative}
+    .card:hover{transform:translateY(-3px); transition:.25s ease; box-shadow:0 16px 40px rgba(0,0,0,.5)}
+
+    .filters{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 24px}
+    .chip{padding:8px 14px; border:1px solid rgba(212,175,55,.35); border-radius:999px; cursor:pointer}
+    .chip.active, .chip:hover{border-color:var(--gold); color:var(--gold)}
+    .project-grid{grid-template-columns:repeat(12,1fr)}
+    .project{grid-column:span 12; overflow:hidden; padding:0}
+    .project .cover{height:220px; background-size:cover; background-position:center}
+    .project .meta{padding:18px 22px}
+    @media(min-width:760px){ .project{grid-column:span 6} }
+    @media(min-width:1024px){ .project{grid-column:span 4} .project .cover{height:200px} }
+
+    footer{background:linear-gradient(180deg, #081b16, #06130f); border-top:1px solid rgba(212,175,55,.2)}
+    .footgrid{display:grid; gap:26px}
+    @media(min-width:760px){ .footgrid{grid-template-columns:2fr 1fr 1fr 1fr} }
+    .footgrid a{display:block; color:var(--muted); text-decoration:none; margin:6px 0}
+    .footgrid a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo"><span class="brand-icon" aria-hidden="true"></span>
+        <b>KINGSHIP</b>
+      </a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="brand-promise.html">Brand Promise</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html" class="gold">Projects</a>
+        <a href="offers.html">Offers</a>
+        <a href="resources.html">Resources</a>
+        <a href="legacy.html">Legacy</a>
+        <a href="partner.html">Partner with us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container wrap">
+      <div class="eyebrow">Projects</div>
+      <h1>Past • Current • <span class="gold">Upcoming</span></h1>
+      <p class="lead">From plots to palaces — discover our portfolio of value-driven real estate projects</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Project Portfolio</div>
+      <h2>Value-Driven <span class="gold">Developments</span></h2>
+      <div class="filters">
+        <span class="chip active">All</span>
+        <span class="chip">Residential</span>
+        <span class="chip">Commercial</span>
+        <span class="chip">Luxury Villas</span>
+        <span class="chip">Plots</span>
+      </div>
+      <div class="grid project-grid">
+        <article class="card project">
+          <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1502005229762-cf1b2da7c52f?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="meta">
+            <h3>Emerald Residences</h3>
+            <p class="lead">Hyderabad • 3 & 4 BHK • Delivered 2024</p>
+            <a href="#" class="btn ghost">View Details</a>
+          </div>
+        </article>
+        
+        <article class="card project">
+          <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1505691723518-36a5ac3b2a59?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="meta">
+            <h3>Goldleaf Towers</h3>
+            <p class="lead">Bengaluru • Grade‑A Offices • Leasing</p>
+            <a href="#" class="btn ghost">View Details</a>
+          </div>
+        </article>
+        
+        <article class="card project">
+          <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="meta">
+            <h3>Palatial Villas</h3>
+            <p class="lead">Goa • Luxury • Launching Soon</p>
+            <a href="#" class="btn ghost">View Details</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="meta">
+            <h3>Royal Gardens</h3>
+            <p class="lead">Chennai • 2 & 3 BHK • Under Construction</p>
+            <a href="#" class="btn ghost">View Details</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="meta">
+            <h3>Premium Plots</h3>
+            <p class="lead">Pune • DTCP Approved • Investment Grade</p>
+            <a href="#" class="btn ghost">View Details</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="meta">
+            <h3>Business Park</h3>
+            <p class="lead">Mumbai • Commercial Complex • Pre-Launch</p>
+            <a href="#" class="btn ghost">View Details</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Project Stats</div>
+      <h2>Our <span class="gold">Track Record</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 3; text-align:center">
+          <h3 style="color:var(--gold); font-size:3rem; margin-bottom:8px">25+</h3>
+          <p class="lead">Projects Delivered</p>
+        </div>
+        <div class="card" style="grid-column:span 3; text-align:center">
+          <h3 style="color:var(--gold); font-size:3rem; margin-bottom:8px">5M+</h3>
+          <p class="lead">Sq Ft Developed</p>
+        </div>
+        <div class="card" style="grid-column:span 3; text-align:center">
+          <h3 style="color:var(--gold); font-size:3rem; margin-bottom:8px">1000+</h3>
+          <p class="lead">Happy Families</p>
+        </div>
+        <div class="card" style="grid-column:span 3; text-align:center">
+          <h3 style="color:var(--gold); font-size:3rem; margin-bottom:8px">98%</h3>
+          <p class="lead">On-Time Delivery</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Coming Soon</div>
+      <h2>Upcoming <span class="gold">Launches</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 6">
+          <h3>Premium Township - Phase 2</h3>
+          <p class="lead">Hyderabad • 200+ Villas • Q2 2025 Launch</p>
+          <p>Experience luxury living with world-class amenities and sustainable design principles.</p>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Tech Park Commercial</h3>
+          <p class="lead">Bengaluru • IT Offices • Q3 2025 Launch</p>
+          <p>State-of-the-art office spaces designed for modern businesses and startups.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container section">
+      <div class="footgrid">
+        <div>
+          <a class="brand" href="index.html"><img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo"><span class="brand-icon" aria-hidden="true"></span><b>KINGSHIP</b></a>
+          <p class="lead">A new standard in true value for all things real estate.</p>
+        </div>
+        <div>
+          <div class="eyebrow">Company</div>
+          <a href="legacy.html">Legacy</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div>
+          <div class="eyebrow">Programs</div>
+          <a href="offers.html">Referral</a>
+          <a href="offers.html">Brand Champions</a>
+          <a href="resources.html">RE‑Invest Portal</a>
+        </div>
+        <div>
+          <div class="eyebrow">Contact</div>
+          <a href="mailto:hello@kingship.example">hello@kingship.example</a>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:.9rem">© 2025 Kingship Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

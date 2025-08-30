@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — KINGSHIP | True Value-Added Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --dark:#0b2e24;           
+      --dark-2:#0f3a2e;         
+      --ink:#e7efe9;            
+      --muted:#b7c7be;          
+      --gold:#d4af37;           
+      --gold-2:#f3d36d;         
+      --bg:#0a211b;             
+      --card:#102d25;           
+      --max:1200px;             
+      --radius:18px;            
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6; 
+    }
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:80px 0}
+    .grid{display:grid; gap:22px}
+    .btn{
+      display:inline-block; padding:14px 22px; border:1px solid var(--gold);
+      color:var(--ink); text-decoration:none; letter-spacing:.5px; border-radius:999px;
+      transition:.25s ease; box-shadow:0 0 0 0 rgba(212,175,55,.3);
+    }
+    .btn:hover{color:#151a17; background:var(--gold); box-shadow:0 12px 40px rgba(212,175,55,.25)}
+    .btn.ghost{background:transparent; color:var(--gold)}
+    .eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:.25em; font-weight:600; font-size:.82rem}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif; margin:0 0 12px}
+    h1{font-size:clamp(36px,6vw,64px); line-height:1.1; font-weight:700}
+    h2{font-size:clamp(28px,4vw,42px); font-weight:600}
+    h3{font-size:22px; font-weight:600}
+    p.lead{font-size:1.1rem; color:var(--muted)}
+    .gold{color:var(--gold)}
+    .divider{height:1px; background:linear-gradient(90deg,transparent, var(--gold) 20%, var(--gold) 80%, transparent); opacity:.35; margin:18px 0 26px}
+
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(1.2) blur(8px);
+         background:linear-gradient(180deg, rgba(11,46,36,.92), rgba(11,46,36,.75)); border-bottom:1px solid rgba(212,175,55,.22)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none}
+    .brand-logo{height:40px; width:auto; object-fit:contain}
+    .brand-icon{width:28px; height:28px; border-radius:8px; border:1px solid var(--gold); position:relative; display:none}
+    .brand-icon:before{content:""; position:absolute; inset:4px; border:1px solid var(--gold); border-radius:6px}
+    .brand b{font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--gold); letter-spacing:.04em; display:none}
+    .nav a{color:var(--ink); text-decoration:none; opacity:.86}
+    .menu{display:flex; gap:22px}
+    .menu a:hover{color:var(--gold)}
+
+    /* Dropdown */
+    .dropdown{position:relative; display:inline-block}
+    .dropdown-content{display:none; position:absolute; background:linear-gradient(180deg, rgba(11,46,36,.98), rgba(11,46,36,.92)); 
+                     min-width:320px; box-shadow:0 12px 24px rgba(0,0,0,.4); z-index:9999; border:1px solid rgba(212,175,55,.3); 
+                     border-radius:8px; padding:12px 0; backdrop-filter:blur(12px); top:calc(100% + 4px); left:0}
+    .dropdown-content a{color:var(--ink); padding:12px 20px; text-decoration:none; display:block; opacity:.9; font-size:.9rem; 
+                       transition:all 0.2s ease; white-space:nowrap}
+    .dropdown-content a:hover{background:rgba(212,175,55,.15); color:var(--gold); opacity:1}
+    .dropdown:hover .dropdown-content{display:block}
+    .dropdown:hover > a{color:var(--gold)}
+    .dropdown > a:after{content:" ▾"; font-size:.8rem; margin-left:4px; transition:transform 0.2s ease}
+    .dropdown:hover > a:after{transform:rotate(180deg)}
+    
+    /* Ensure dropdown stays open when hovering over content */
+    .dropdown-content:hover{display:block}
+
+    .hero{position:relative; min-height:60vh; display:grid; place-items:center; overflow:hidden;
+      background:
+        radial-gradient(60% 70% at 70% 30%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg, rgba(9,29,23,.35), rgba(9,29,23,.85)),
+        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover; background-position:center;
+      border-bottom:1px solid rgba(212,175,55,.25)
+    }
+    .hero .wrap{padding:80px 0 60px; text-align:center}
+    .hero h1{max-width:900px; margin:0 auto 12px}
+    .hero p{max-width:760px; margin:0 auto 26px}
+
+    .card{background:linear-gradient(180deg, var(--card), #0b251f); border:1px solid rgba(212,175,55,.18);
+          border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:relative}
+    .card .icon{width:42px; height:42px; border:1px solid var(--gold); border-radius:10px; display:grid; place-items:center; margin-bottom:14px}
+    .card .icon svg{width:24px; height:24px; fill:var(--gold)}
+    .card:hover{transform:translateY(-3px); transition:.25s ease; box-shadow:0 16px 40px rgba(0,0,0,.5)}
+
+    .services{grid-template-columns:repeat(12,1fr)}
+    .services .card{grid-column:span 6}
+    @media (min-width:900px){ .services .card{grid-column:span 4} }
+
+    footer{background:linear-gradient(180deg, #081b16, #06130f); border-top:1px solid rgba(212,175,55,.2)}
+    .footgrid{display:grid; gap:26px}
+    @media(min-width:760px){ .footgrid{grid-template-columns:2fr 1fr 1fr 1fr} }
+    .footgrid a{display:block; color:var(--muted); text-decoration:none; margin:6px 0}
+    .footgrid a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <b>KINGSHIP</b>
+      </a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="brand-promise.html">Brand Promise</a>
+        <div class="dropdown">
+          <a href="services.html" class="gold">Services</a>
+          <div class="dropdown-content">
+            <a href="services.html#expert-connect">Expert Connect</a>
+            <a href="services.html#design-build">Design & Build</a>
+            <a href="services.html#maintenance">Maintenance</a>
+            <a href="services.html#commercialization">Commercialization & RoI Assurance: Re-sale / Tenancy Management / More</a>
+            <a href="services.html#litigation">Litigation Resolution / Legal Advisory & Assistance</a>
+            <a href="services.html#leasing">Leasing & Resale</a>
+          </div>
+        </div>
+        <a href="projects.html">Projects</a>
+        <a href="offers.html">Offers</a>
+        <a href="resources.html">Resources</a>
+        <a href="legacy.html">Legacy</a>
+        <a href="partner.html">Partner with us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container wrap">
+      <div class="eyebrow">Services</div>
+      <h1>True Value-Added <span class="gold">Services</span></h1>
+      <p class="lead">From plots to palaces — comprehensive advisory, design & build, legal, commercialization & ROI solutions</p>
+    </div>
+  </header>
+
+  <!-- EXPERT CONNECT -->
+  <section class="section" id="expert-connect">
+    <div class="container">
+      <div class="eyebrow">Expert Connect</div>
+      <h2>Vetted <span class="gold">Professional Network</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z"/></svg>
+          </div>
+          <h3>Access to Vetted Professionals</h3>
+          <p class="lead">Connect with our carefully selected network of architects, contractors, legal experts, financial partners, and specialists across all real estate domains.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN & BUILD -->
+  <section class="section" id="design-build">
+    <div class="container">
+      <div class="eyebrow">Design & Build</div>
+      <h2>Premium <span class="gold">Architecture & Execution</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-1-4 2-4-2-4 2v1l4-2 4 2 4-2 2 1 3-2zM3 10v7h18v-7l-3 2-2-1-4 2-4-2-5 3z"/></svg>
+          </div>
+          <h3>Turnkey Construction Solutions</h3>
+          <p class="lead">Premium architecture & turnkey execution with ROI-aligned specifications, ensuring quality construction from concept to completion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAINTENANCE -->
+  <section class="section" id="maintenance">
+    <div class="container">
+      <div class="eyebrow">Maintenance</div>
+      <h2>Asset Value <span class="gold">Preservation</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 21h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zM5 17h14l1-7H4l1 7zm3-12h8l1 3H7l1-3z"/></svg>
+          </div>
+          <h3>Comprehensive Maintenance Services</h3>
+          <p class="lead">AMC plans and on-call services to preserve asset value long-term, ensuring your investment maintains its quality and market value.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMERCIALIZATION & ROI -->
+  <section class="section" id="commercialization">
+    <div class="container">
+      <div class="eyebrow">Commercialization & ROI Assurance</div>
+      <h2>Re-sale / Tenancy Management / <span class="gold">More</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 17h2v2H3v-2zm4 0h2v2H7v-2zm4-6h2v8h-2v-8zm4-4h2v12h-2V7zm4-2h2v14h-2V5z"/></svg>
+          </div>
+          <h3>Maximum Return Optimization</h3>
+          <p class="lead">Comprehensive commercialization services including leasing, resale, tenancy management, and strategic portfolio optimization designed to maximize returns on your real estate investments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LITIGATION & LEGAL -->
+  <section class="section" id="litigation">
+    <div class="container">
+      <div class="eyebrow">Litigation Resolution</div>
+      <h2>Legal Advisory & <span class="gold">Assistance</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm1 16h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </div>
+          <h3>Complete Legal Support</h3>
+          <p class="lead">Title checks, dispute resolution, documentation assistance, and comprehensive legal advisory services with our network of top legal partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEASING & RESALE -->
+  <section class="section" id="leasing">
+    <div class="container">
+      <div class="eyebrow">Leasing & Resale</div>
+      <h2>Strategic <span class="gold">Transaction Management</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 12">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </div>
+          <h3>Expert Transaction Services</h3>
+          <p class="lead">Professional leasing and resale services to optimize your property's market performance, tenant management, and strategic exit planning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Service Methodology</div>
+      <h2>Our <span class="gold">Process</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 3">
+          <h3>01. Research</h3>
+          <p class="lead">Market analysis, location study, and feasibility assessment</p>
+        </div>
+        <div class="card" style="grid-column:span 3">
+          <h3>02. Advisory</h3>
+          <p class="lead">Strategic planning and investment guidance based on your goals</p>
+        </div>
+        <div class="card" style="grid-column:span 3">
+          <h3>03. Execution</h3>
+          <p class="lead">End-to-end project management from documentation to delivery</p>
+        </div>
+        <div class="card" style="grid-column:span 3">
+          <h3>04. Support</h3>
+          <p class="lead">Ongoing maintenance and portfolio management services</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container section">
+      <div class="footgrid">
+        <div>
+          <a class="brand" href="index.html"><span class="brand-icon" aria-hidden="true"></span><b>KINGSHIP</b></a>
+          <p class="lead">A new standard in true value for all things real estate.</p>
+        </div>
+        <div>
+          <div class="eyebrow">Company</div>
+          <a href="legacy.html">Legacy</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div>
+          <div class="eyebrow">Programs</div>
+          <a href="offers.html">Referral</a>
+          <a href="offers.html">Brand Champions</a>
+          <a href="resources.html">RE‑Invest Portal</a>
+        </div>
+        <div>
+          <div class="eyebrow">Contact</div>
+          <a href="mailto:hello@kingship.example">hello@kingship.example</a>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:.9rem">© 2025 Kingship Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

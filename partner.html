@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Partner with us — KINGSHIP | Building Success Together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --dark:#0b2e24;           
+      --dark-2:#0f3a2e;         
+      --ink:#e7efe9;            
+      --muted:#b7c7be;          
+      --gold:#d4af37;           
+      --gold-2:#f3d36d;         
+      --bg:#0a211b;             
+      --card:#102d25;           
+      --max:1200px;             
+      --radius:18px;            
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6; 
+    }
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:80px 0}
+    .grid{display:grid; gap:22px}
+    .btn{
+      display:inline-block; padding:14px 22px; border:1px solid var(--gold);
+      color:var(--ink); text-decoration:none; letter-spacing:.5px; border-radius:999px;
+      transition:.25s ease; box-shadow:0 0 0 0 rgba(212,175,55,.3);
+    }
+    .btn:hover{color:#151a17; background:var(--gold); box-shadow:0 12px 40px rgba(212,175,55,.25)}
+    .btn.ghost{background:transparent; color:var(--gold)}
+    .eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:.25em; font-weight:600; font-size:.82rem}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif; margin:0 0 12px}
+    h1{font-size:clamp(36px,6vw,64px); line-height:1.1; font-weight:700}
+    h2{font-size:clamp(28px,4vw,42px); font-weight:600}
+    h3{font-size:22px; font-weight:600}
+    p.lead{font-size:1.1rem; color:var(--muted)}
+    .gold{color:var(--gold)}
+    .divider{height:1px; background:linear-gradient(90deg,transparent, var(--gold) 20%, var(--gold) 80%, transparent); opacity:.35; margin:18px 0 26px}
+
+    .nav{position:sticky; top:0; z-index:80; backdrop-filter:saturate(1.2) blur(8px);
+         background:linear-gradient(180deg, rgba(11,46,36,.92), rgba(11,46,36,.75)); border-bottom:1px solid rgba(212,175,55,.22)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none}
+    .brand-logo{height:40px; width:auto; object-fit:contain}
+    .brand-icon{width:28px; height:28px; border-radius:8px; border:1px solid var(--gold); position:relative; display:none}
+    .brand-icon:before{content:""; position:absolute; inset:4px; border:1px solid var(--gold); border-radius:6px}
+    .brand b{font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--gold); letter-spacing:.04em; display:none}
+    .nav a{color:var(--ink); text-decoration:none; opacity:.86}
+    .menu{display:flex; gap:22px}
+    .menu a:hover{color:var(--gold)}
+
+    .hero{position:relative; min-height:60vh; display:grid; place-items:center; overflow:hidden;
+      background:
+        radial-gradient(60% 70% at 70% 30%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg, rgba(9,29,23,.35), rgba(9,29,23,.85)),
+        url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover; background-position:center;
+      border-bottom:1px solid rgba(212,175,55,.25)
+    }
+    .hero .wrap{padding:80px 0 60px; text-align:center}
+    .hero h1{max-width:900px; margin:0 auto 12px}
+    .hero p{max-width:760px; margin:0 auto 26px}
+
+    .card{background:linear-gradient(180deg, var(--card), #0b251f); border:1px solid rgba(212,175,55,.18);
+          border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:relative}
+    .card .icon{width:42px; height:42px; border:1px solid var(--gold); border-radius:10px; display:grid; place-items:center; margin-bottom:14px}
+    .card .icon svg{width:24px; height:24px; fill:var(--gold)}
+    .card:hover{transform:translateY(-3px); transition:.25s ease; box-shadow:0 16px 40px rgba(0,0,0,.5)}
+
+    .cta{background:linear-gradient(90deg, rgba(212,175,55,.1), transparent), var(--dark-2); border:1px solid rgba(212,175,55,.25); border-radius:var(--radius); padding:28px; display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+
+    footer{background:linear-gradient(180deg, #081b16, #06130f); border-top:1px solid rgba(212,175,55,.2)}
+    .footgrid{display:grid; gap:26px}
+    @media(min-width:760px){ .footgrid{grid-template-columns:2fr 1fr 1fr 1fr} }
+    .footgrid a{display:block; color:var(--muted); text-decoration:none; margin:6px 0}
+    .footgrid a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo"><span class="brand-icon" aria-hidden="true"></span>
+        <b>KINGSHIP</b>
+      </a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="brand-promise.html">Brand Promise</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="offers.html">Offers</a>
+        <a href="resources.html">Resources</a>
+        <a href="legacy.html">Legacy</a>
+        <a href="partner.html" class="gold">Partner with us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container wrap">
+      <div class="eyebrow">Partner with us</div>
+      <h1>Building <span class="gold">Success</span> Together</h1>
+      <p class="lead">Join our network of trusted partners and create mutual value through strategic collaboration</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Partnership Opportunities</div>
+      <h2>Strategic <span class="gold">Collaborations</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 4">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </div>
+          <h3>Land Owners</h3>
+          <p class="lead">Joint development opportunities with transparent revenue sharing and professional project management.</p>
+          <ul style="color:var(--muted); margin:16px 0; padding-left:20px">
+            <li>Revenue sharing models</li>
+            <li>Professional project management</li>
+            <li>Legal compliance assurance</li>
+            <li>Marketing & sales support</li>
+          </ul>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <h3>Investors</h3>
+          <p class="lead">Vetted investment opportunities with detailed ROI analysis and risk assessment reports.</p>
+          <ul style="color:var(--muted); margin:16px 0; padding-left:20px">
+            <li>Pre-screened opportunities</li>
+            <li>Detailed financial modeling</li>
+            <li>Risk mitigation strategies</li>
+            <li>Portfolio diversification</li>
+          </ul>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 1H2v14h2V3h12V1zm-1 4H8v6h7V5zm-3 9v4h4v-4h-4zm-8-9v14h14v-2H8V9h14V5H4z"/></svg>
+          </div>
+          <h3>Service Partners</h3>
+          <p class="lead">Join our network of architects, contractors, legal experts, and financial service providers.</p>
+          <ul style="color:var(--muted); margin:16px 0; padding-left:20px">
+            <li>Architects & designers</li>
+            <li>Construction contractors</li>
+            <li>Legal & financial experts</li>
+            <li>PropTech companies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Business Partnerships</div>
+      <h2>Growth <span class="gold">Partnerships</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 6">
+          <h3>Channel Partners</h3>
+          <p class="lead">Become a preferred sales partner with competitive commissions, training support, and marketing resources.</p>
+          <ul style="color:var(--muted); margin:16px 0; padding-left:20px">
+            <li>Competitive commission structure</li>
+            <li>Comprehensive training programs</li>
+            <li>Marketing collateral support</li>
+            <li>Lead generation assistance</li>
+            <li>Performance incentives</li>
+          </ul>
+          <a href="#" class="btn ghost">Apply Now</a>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Technology Partners</h3>
+          <p class="lead">Collaborate on PropTech solutions and digital innovation for the real estate ecosystem.</p>
+          <ul style="color:var(--muted); margin:16px 0; padding-left:20px">
+            <li>API integrations</li>
+            <li>Co-development opportunities</li>
+            <li>Market validation support</li>
+            <li>Go-to-market partnerships</li>
+            <li>Innovation lab access</li>
+          </ul>
+          <a href="#" class="btn ghost">Collaborate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Financial Partners</div>
+      <h2>Institutional <span class="gold">Partnerships</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 4">
+          <h3>Banks & NBFCs</h3>
+          <p class="lead">Financing partnerships for seamless customer loan processing</p>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>Insurance Companies</h3>
+          <p class="lead">Comprehensive insurance solutions for properties and investments</p>
+        </div>
+        <div class="card" style="grid-column:span 4">
+          <h3>Investment Funds</h3>
+          <p class="lead">Institutional capital partnerships for large-scale developments</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Why Partner with KINGSHIP</div>
+      <h2>Partnership <span class="gold">Benefits</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 6">
+          <h3>Proven Track Record</h3>
+          <p class="lead">25+ successful projects and 98% on-time delivery rate demonstrate our commitment to excellence and reliability.</p>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Transparent Operations</h3>
+          <p class="lead">Our zero-hype philosophy ensures complete transparency in all partnership dealings and financial arrangements.</p>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Market Leadership</h3>
+          <p class="lead">Partner with the new standard in true value and benefit from our growing market presence across India.</p>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Long-term Vision</h3>
+          <p class="lead">Build lasting relationships based on mutual growth, shared success, and continuous value creation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Partnership Process</div>
+      <h2>How to <span class="gold">Partner</span></h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
+        <div class="card" style="grid-column:span 3">
+          <h3>01. Initial Contact</h3>
+          <p class="lead">Reach out through our partnership inquiry form or direct contact</p>
+        </div>
+        <div class="card" style="grid-column:span 3">
+          <h3>02. Evaluation</h3>
+          <p class="lead">We assess mutual fit and partnership potential through detailed discussions</p>
+        </div>
+        <div class="card" style="grid-column:span 3">
+          <h3>03. Agreement</h3>
+          <p class="lead">Structure partnership terms that create value for both parties</p>
+        </div>
+        <div class="card" style="grid-column:span 3">
+          <h3>04. Launch</h3>
+          <p class="lead">Begin collaboration with full support and ongoing relationship management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h3 style="margin:6px 0 4px">Ready to Partner?</h3>
+          <p class="lead" style="margin:0">Let's discuss how we can create mutual value and grow together.</p>
+        </div>
+        <div>
+          <a class="btn" href="mailto:partnerships@kingship.example">Partnership Inquiry</a>
+          <a class="btn ghost" href="tel:+910000000000">Schedule Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container section">
+      <div class="footgrid">
+        <div>
+          <a class="brand" href="index.html"><img src="images/logo.jpg" alt="KINGSHIP - Seal of Trust in True Value" class="brand-logo"><span class="brand-icon" aria-hidden="true"></span><b>KINGSHIP</b></a>
+          <p class="lead">A new standard in true value for all things real estate.</p>
+        </div>
+        <div>
+          <div class="eyebrow">Company</div>
+          <a href="legacy.html">Legacy</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div>
+          <div class="eyebrow">Programs</div>
+          <a href="offers.html">Referral</a>
+          <a href="offers.html">Brand Champions</a>
+          <a href="resources.html">RE‑Invest Portal</a>
+        </div>
+        <div>
+          <div class="eyebrow">Contact</div>
+          <a href="mailto:hello@kingship.example">hello@kingship.example</a>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:.9rem">© 2025 Kingship Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
