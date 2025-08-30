@@ -78,17 +78,371 @@
     .dropdown-content:hover{display:block}
 
     /* Hero */
-    .hero{position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden;
-      background:
-        radial-gradient(60% 70% at 70% 30%, rgba(212,175,55,.10), transparent 60%),
-        linear-gradient(180deg, rgba(9,29,23,.35), rgba(9,29,23,.85)),
-        url('images/ChatGPT Image Aug 29, 2025 at 06_35_11 PM.png');
-      background-size:cover; background-position:center;
-      border-bottom:1px solid rgba(212,175,55,.25)
+    .hero{position:relative; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;
+      background: var(--dark);
+      border-bottom:1px solid rgba(212,175,55,.25);
+      perspective: 1000px;
     }
-    .hero .wrap{padding:120px 0 100px; text-align:center}
-    .hero h1{max-width:900px; margin:0 auto 12px}
-    .hero p{max-width:760px; margin:0 auto 26px}
+    
+    /* HYPE Text Styling */
+    .hype-container{position:relative; z-index:10; width:100%; height:100%;}
+    .hype-text{position:relative; width:100%; height:100%; display:flex; justify-content:center; align-items:center;}
+    .hype-text{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(150px, 25vw, 350px);
+      font-weight:700;
+      color:var(--gold);
+      text-shadow:
+        0 1px 0 #b8941f,
+        0 2px 0 #b8941f,
+        0 3px 0 #b8941f,
+        0 4px 0 #b8941f,
+        0 5px 0 #b8941f,
+        0 6px 1px rgba(0,0,0,.2),
+        0 0 8px rgba(212,175,55,.4),
+        0 2px 6px rgba(0,0,0,.4),
+        0 4px 8px rgba(0,0,0,.3),
+        0 6px 15px rgba(0,0,0,.3),
+        0 12px 15px rgba(0,0,0,.25);
+      transform: translateZ(50px);
+      transition: all 0.3s ease;
+      user-select: none;
+      line-height: 0.8;
+    }
+    
+    .hype-piece{
+      display:inline-block;
+      position:absolute;
+      transition: none;
+      transform-origin: center center;
+    }
+    
+    .hype-piece:nth-child(1) { left: 0%; }
+    .hype-piece:nth-child(2) { left: 25%; }
+    .hype-piece:nth-child(3) { left: 50%; }
+    .hype-piece:nth-child(4) { left: 75%; }
+    
+    .hype-piece.fragment {
+      opacity: 0;
+      font-size: 0.4em;
+      z-index: 999;
+    }
+    
+    .hype-piece.fragment:nth-child(5) { left: 5%; top: 10%; }
+    .hype-piece.fragment:nth-child(6) { left: 30%; top: -5%; }
+    .hype-piece.fragment:nth-child(7) { left: 55%; top: 8%; }
+    .hype-piece.fragment:nth-child(8) { left: 80%; top: -3%; }
+    .hype-piece.fragment:nth-child(9) { left: 10%; top: -8%; }
+    .hype-piece.fragment:nth-child(10) { left: 35%; top: 12%; }
+    .hype-piece.fragment:nth-child(11) { left: 60%; top: -6%; }
+    .hype-piece.fragment:nth-child(12) { left: 85%; top: 9%; }
+    .hype-piece.fragment:nth-child(13) { left: 15%; top: 5%; }
+    .hype-piece.fragment:nth-child(14) { left: 40%; top: -10%; }
+    .hype-piece.fragment:nth-child(15) { left: 65%; top: 4%; }
+    .hype-piece.fragment:nth-child(16) { left: 90%; top: -7%; }
+    
+    /* Animation classes */
+    .hype-text.crushing .hype-piece {
+      opacity: 0;
+      animation: fallDown 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      z-index: 1000;
+    }
+    
+    .hype-text.crushing .hype-piece.fragment {
+      opacity: 1;
+      animation: fragmentFall 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    
+    .fade-in-phrases{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      text-align:center;
+      opacity:0;
+      z-index:5;
+      width:100%;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+    }
+    
+    .phrase{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(60px, 12vw, 120px);
+      font-weight:600;
+      color:var(--gold);
+      margin:40px 0;
+      transform: translateY(50px);
+      transition: all 1.2s ease;
+      text-shadow:
+        0 3px 6px rgba(0,0,0,.4),
+        0 0 15px rgba(212,175,55,.3),
+        0 0 30px rgba(212,175,55,.1);
+      line-height: 1.1;
+      text-align: center;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .phrase::after {
+      content: '|';
+      position: absolute;
+      right: 0;
+      top: 0;
+      animation: blink 1s infinite;
+      opacity: 0;
+    }
+    
+    .phrase.typing::after {
+      opacity: 1;
+    }
+    
+    .phrase.typing-complete::after {
+      opacity: 0;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    
+    .phrase .char {
+      opacity: 0;
+      display: inline-block;
+      animation: typeIn 0.05s ease forwards;
+    }
+    
+    .phrase.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+    
+    @keyframes typeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-phrases.show{
+      opacity:1;
+    }
+    
+    @keyframes fallDown{
+      0%{
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity:1;
+      }
+      100%{
+        transform: translateY(150vh) rotate(360deg) scale(0.3);
+        opacity:0;
+      }
+    }
+    
+    @keyframes fragmentFall{
+      0%{
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity:1;
+      }
+      100%{
+        transform: translateY(120vh) translateX(var(--random-x, 0px)) rotate(540deg) scale(0.1);
+        opacity:0;
+      }
+    }
+    
+    @keyframes riseUp{
+      0%{
+        transform: translateY(150vh) rotate(360deg) scale(0.3);
+        opacity:0;
+      }
+      100%{
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity:1;
+      }
+    }
+    
+    @keyframes fragmentRise{
+      0%{
+        transform: translateY(120vh) translateX(var(--random-x, 0px)) rotate(540deg) scale(0.1);
+        opacity:0;
+      }
+      100%{
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity:0;
+      }
+    }
+    
+    .hype-text.reforming .hype-piece {
+      animation: riseUp 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      z-index: 1000;
+      opacity: 1;
+    }
+    
+    .hype-text.reforming .hype-piece.fragment {
+      animation: fragmentRise 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    
+    /* Body scroll control */
+    body.no-scroll{
+      overflow:hidden;
+      height:100vh;
+    }
+    
+    /* Services Section */
+    .services-main {
+      background: var(--dark);
+      color: var(--ink);
+      border-top: 1px solid rgba(212,175,55,.25);
+      border-bottom: 1px solid rgba(212,175,55,.25);
+    }
+    
+    .services-main .eyebrow {
+      color: var(--gold);
+    }
+    
+    .services-main h2 {
+      color: var(--ink);
+    }
+    
+    .services-main .gold {
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(212,175,55,.3);
+    }
+    
+    .service-category {
+      margin: 60px 0;
+    }
+    
+    .category-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 30px;
+      text-align: left;
+    }
+    
+    .service-grid {
+      display: grid;
+      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .service-grid.three-col {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .service-grid.four-col {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    }
+    
+    .service-card.large {
+      padding: 35px 25px;
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 50px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .service-icon img {
+      width: 60px;
+      height: auto;
+      object-fit: contain;
+    }
+    
+    .service-card h4 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 600;
+      color: var(--dark);
+      margin: 15px 0 10px;
+      line-height: 1.2;
+    }
+    
+    .service-card p {
+      color: #2c3e50;
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 8px 0;
+    }
+    
+    .service-card p:first-of-type {
+      font-weight: 500;
+    }
+    
+    .service-card em {
+      color: #666;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hype-text {
+        font-size:clamp(100px, 30vw, 250px);
+      }
+      
+      .phrase {
+        font-size:clamp(40px, 15vw, 80px);
+        margin: 30px 0;
+      }
+      
+      .service-grid,
+      .service-grid.three-col,
+      .service-grid.four-col {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .service-category {
+        margin: 40px 0;
+      }
+      
+      .category-title {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      
+      .service-card {
+        padding: 20px 15px;
+      }
+      
+      .service-card.large {
+        padding: 25px 20px;
+      }
+    }
 
     /* Cards */
     .card{background:linear-gradient(180deg, var(--card), #0b251f); border:1px solid rgba(212,175,55,.18);
@@ -164,40 +518,100 @@
 
   <!-- HERO -->
   <header class="hero" id="home">
-    <div class="container wrap">
-      <div class="eyebrow">Real Estate • India</div>
-      <h1><span class="gold">New Standard</span> in True Value</h1>
-      <p class="lead">HYPE-SHATTERING | VALUE-CREATING — Experience the ultimate choice for value in real estate. From plots to palaces, we deliver unmatched value through research‑based guidance and zero‑hype principles.</p>
-      <div style="margin-top:14px">
-        <a class="btn" href="#projects">Explore Properties</a>
-        <a class="btn ghost" href="#services">View Services</a>
+    <div class="hype-container">
+      <div class="hype-text" id="hype-text">
+        <span class="hype-piece" data-piece="1">H</span>
+        <span class="hype-piece" data-piece="2">Y</span>
+        <span class="hype-piece" data-piece="3">P</span>
+        <span class="hype-piece" data-piece="4">E</span>
+        <span class="hype-piece fragment" data-piece="5">H</span>
+        <span class="hype-piece fragment" data-piece="6">Y</span>
+        <span class="hype-piece fragment" data-piece="7">P</span>
+        <span class="hype-piece fragment" data-piece="8">E</span>
+        <span class="hype-piece fragment" data-piece="9">H</span>
+        <span class="hype-piece fragment" data-piece="10">Y</span>
+        <span class="hype-piece fragment" data-piece="11">P</span>
+        <span class="hype-piece fragment" data-piece="12">E</span>
+        <span class="hype-piece fragment" data-piece="13">H</span>
+        <span class="hype-piece fragment" data-piece="14">Y</span>
+        <span class="hype-piece fragment" data-piece="15">P</span>
+        <span class="hype-piece fragment" data-piece="16">E</span>
       </div>
+    </div>
+    
+    <div class="fade-in-phrases" id="fade-phrases">
+      <div class="phrase" id="phrase1" data-text="Killing the Hype"></div>
+      <div class="phrase" id="phrase2" data-text="Redefining the Value"></div>
     </div>
   </header>
 
-  <!-- FEATURED HIGHLIGHTS -->
-  <section class="section">
+  <!-- SERVICES SECTION -->
+  <section class="section services-main" id="services">
     <div class="container">
-      <div class="eyebrow">Why Choose KINGSHIP</div>
-      <h2>The <span class="gold">New Standard</span> in True Value</h2>
+      <div class="eyebrow">Our Services</div>
+      <h2>Complete <span class="gold">Real Estate</span> Solutions</h2>
       <div class="divider"></div>
-      <div class="grid" style="grid-template-columns:repeat(12,1fr)">
-        <div class="card" style="grid-column:span 4">
-          <h3>NO-MORE-HYPE | ZERO-HYPE</h3>
-          <p class="lead">We shatter industry hype with transparency and truth. Every recommendation is research-backed.</p>
-          <a class="btn ghost" href="brand-promise.html">Learn More</a>
-        </div>
-        <div class="card" style="grid-column:span 4">
-          <h3>True Value-Added Services</h3>
-          <p class="lead">From plots to palaces — comprehensive advisory, design & build, legal, and ROI solutions.</p>
-          <a class="btn ghost" href="services.html">View Services</a>
-        </div>
-        <div class="card" style="grid-column:span 4">
-          <h3>25+ Projects Delivered</h3>
-          <p class="lead">Track record of excellence with 98% on-time delivery and 1000+ satisfied clients.</p>
-          <a class="btn ghost" href="projects.html">See Projects</a>
+      
+      <!-- Promises & Positions -->
+      <div class="service-category">
+        <h3 class="category-title">Promises & Positions</h3>
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="images/logo.jpg" alt="KINGSHIP">
+            </div>
+            <h4>Creating Unmatched Value</h4>
+            <p>Real Value in Real Estate</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="images/logo.jpg" alt="KINGSHIP">
+            </div>
+            <h4>Ultimate Choice for True Value</h4>
+            <p>Ultimate Deal Destination</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="images/logo.jpg" alt="KINGSHIP">
+            </div>
+            <h4>Redefining Value</h4>
+            <p>Redefining Real Estate</p>
+          </div>
         </div>
       </div>
+
+      <!-- All Things Real Estate -->
+      <div class="service-category">
+        <h3 class="category-title">All Things Real Estate</h3>
+        <div class="service-grid three-col">
+          <div class="service-card large">
+            <div class="service-icon">
+              <img src="images/logo.jpg" alt="Assets">
+            </div>
+            <h4>Assets</h4>
+            <p>True Value Real Estate: from Plots to Palaces</p>
+          </div>
+          <div class="service-card large">
+            <div class="service-icon">
+              <img src="images/logo.jpg" alt="Assistance">
+            </div>
+            <h4>Assistance</h4>
+            <p>True Value-Added Services</p>
+          </div>
+          <div class="service-card large">
+            <div class="service-icon">
+              <img src="images/logo.jpg" alt="Academia">
+            </div>
+            <h4>Academia & Advocacy</h4>
+            <p>True Impact Academics</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a class="btn" href="services.html">View All Services</a>
+      </div>
+
     </div>
   </section>
 
@@ -250,5 +664,225 @@
       <p style="color:var(--muted); font-size:.9rem">© 2025 Kingship Real Estate. All rights reserved.</p>
     </div>
   </footer>
+  
+  <script>
+    // HYPE Animation Controller
+    class HypeAnimation {
+      constructor() {
+        this.animationStarted = false;
+        this.animationCompleted = false;
+        this.scrollThreshold = 50;
+        this.lastScrollY = 0;
+        this.isReversing = false;
+        this.init();
+      }
+      
+      init() {
+        // Disable scrolling initially
+        document.body.classList.add('no-scroll');
+        
+        // Add scroll event listener
+        this.addScrollListener();
+        
+        // Add wheel event listener for more responsive detection
+        window.addEventListener('wheel', this.handleWheel.bind(this), { passive: false });
+        window.addEventListener('touchmove', this.handleTouch.bind(this), { passive: false });
+      }
+      
+      addScrollListener() {
+        window.addEventListener('scroll', this.handleScroll.bind(this));
+      }
+      
+      handleWheel(e) {
+        if (!this.animationCompleted) {
+          if (e.deltaY > 0) {
+            e.preventDefault();
+            this.startAnimation();
+          } else if (e.deltaY < 0 && this.animationStarted) {
+            e.preventDefault();
+            this.reverseAnimation();
+          }
+        } else {
+          // When animation is completed, check for scroll up to reverse
+          if (e.deltaY < 0 && window.scrollY === 0) {
+            e.preventDefault();
+            this.reverseAnimation();
+          }
+        }
+      }
+      
+      handleTouch(e) {
+        if (!this.animationCompleted) {
+          e.preventDefault();
+          this.startAnimation();
+        }
+      }
+      
+      handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        if (!this.animationStarted && currentScrollY > this.scrollThreshold) {
+          this.startAnimation();
+        }
+        
+        // Check for scroll up to top after animation completed
+        if (this.animationCompleted && currentScrollY === 0 && this.lastScrollY > 0) {
+          this.reverseAnimation();
+        }
+        
+        this.lastScrollY = currentScrollY;
+      }
+      
+      startAnimation() {
+        if (this.animationStarted || this.isReversing) return;
+        
+        this.animationStarted = true;
+        
+        // Start the falling animation
+        this.animateLetters();
+        
+        // Show phrases after delay
+        setTimeout(() => {
+          this.showPhrases();
+        }, 1500);
+        
+        // Enable scrolling after full animation
+        setTimeout(() => {
+          this.enableScrolling();
+        }, 4000);
+      }
+      
+      reverseAnimation() {
+        if (!this.animationStarted || this.isReversing) return;
+        
+        this.isReversing = true;
+        
+        // Disable scrolling during reverse
+        document.body.classList.add('no-scroll');
+        window.scrollTo(0, 0);
+        
+        // Hide phrases first
+        this.hidePhrases();
+        
+        // Reverse letter animation after phrases fade
+        setTimeout(() => {
+          this.reverseLetters();
+        }, 800);
+        
+        // Reset state after animation
+        setTimeout(() => {
+          this.resetState();
+        }, 3000);
+      }
+      
+      animateLetters() {
+        const hypeText = document.getElementById('hype-text');
+        const fragments = document.querySelectorAll('.hype-piece.fragment');
+        
+        // Add random X movement to fragments
+        fragments.forEach(fragment => {
+          const randomX = (Math.random() - 0.5) * 400; // Random between -200px and 200px
+          fragment.style.setProperty('--random-x', randomX + 'px');
+        });
+        
+        // Trigger crushing animation
+        hypeText.classList.remove('reforming');
+        hypeText.classList.add('crushing');
+      }
+      
+      reverseLetters() {
+        const hypeText = document.getElementById('hype-text');
+        
+        // Trigger reforming animation
+        hypeText.classList.remove('crushing');
+        hypeText.classList.add('reforming');
+        
+        // Reset after animation completes
+        setTimeout(() => {
+          hypeText.classList.remove('reforming');
+        }, 1800);
+      }
+      
+      showPhrases() {
+        const fadeContainer = document.getElementById('fade-phrases');
+        const phrase1 = document.getElementById('phrase1');
+        const phrase2 = document.getElementById('phrase2');
+        
+        fadeContainer.classList.add('show');
+        
+        setTimeout(() => {
+          phrase1.classList.add('show');
+          this.typePhrase(phrase1, () => {
+            // Start typing second phrase after first one completes
+            setTimeout(() => {
+              phrase2.classList.add('show');
+              this.typePhrase(phrase2);
+            }, 200);
+          });
+        }, 300);
+      }
+      
+      typePhrase(element, callback) {
+        const text = element.getAttribute('data-text');
+        element.innerHTML = '';
+        element.classList.add('typing');
+        
+        let charIndex = 0;
+        const typeInterval = setInterval(() => {
+          if (charIndex < text.length) {
+            const char = text.charAt(charIndex);
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
+            span.style.animationDelay = '0ms';
+            element.appendChild(span);
+            charIndex++;
+          } else {
+            clearInterval(typeInterval);
+            element.classList.remove('typing');
+            element.classList.add('typing-complete');
+            if (callback) callback();
+          }
+        }, 80); // Typing speed
+      }
+      
+      hidePhrases() {
+        const fadeContainer = document.getElementById('fade-phrases');
+        const phrase1 = document.getElementById('phrase1');
+        const phrase2 = document.getElementById('phrase2');
+        
+        // Remove typing classes and reset
+        phrase1.classList.remove('show', 'typing', 'typing-complete');
+        phrase2.classList.remove('show', 'typing', 'typing-complete');
+        phrase1.innerHTML = '';
+        phrase2.innerHTML = '';
+        
+        setTimeout(() => {
+          fadeContainer.classList.remove('show');
+        }, 500);
+      }
+      
+      enableScrolling() {
+        document.body.classList.remove('no-scroll');
+        this.animationCompleted = true;
+      }
+      
+      resetState() {
+        this.animationStarted = false;
+        this.animationCompleted = false;
+        this.isReversing = false;
+        this.lastScrollY = 0;
+        
+        // Reset text classes
+        const hypeText = document.getElementById('hype-text');
+        hypeText.classList.remove('crushing', 'reforming');
+      }
+    }
+    
+    // Initialize the animation when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      new HypeAnimation();
+    });
+  </script>
 </body>
 </html>
